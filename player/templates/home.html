@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kor">
+    <head>
+        <meta charset="utf-8">
+        <title>Psyworld</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'app name/css/style.css' %}" />
+    </head>
+    <body>
+        <header>
+            <section id="title">Psyworld</section>
+            <section id="menu">
+                <section id="make">
+                    <a href="{% url 'new' %}">write</a>
+                </section>
+            </section>
+        </header>
+        <main>
+            <div id="container">
+                <section class=content>
+                    {% for post in posts_list %}
+                        <h3>{{ post.title }}</h3>
+                        <p3>{{ post.pub_date}}</p3>
+                        <p> {{ post.body|linebreaks }}</p>
+                        <hr style="color:'#BDBDBD';">
+                    {% endfor %}
+                </section>
+            </div>
+        </main> 
+        <footer>
+            <div id="sound">
+                <audio loop autoplay controls>
+                    <source src="{% static 'app name/audio/music.mp3' %}">
+                        브라우저가 오디오를 지원하지 않습니다.
+                </audio>
+            </div>
+        </footer>
+    </body>
+
+</html>

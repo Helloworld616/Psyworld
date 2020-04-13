@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kor">
+    <head>
+        <meta charset="utf-8">
+        <title>Psyworld</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'app name/css/content.css' %}" />
+    </head>
+    <body>
+        <header>
+            <section id="title">올리기 전에 한 번 더 생각해 보세요</section>
+        </header>
+        <main>
+            <form method="POST" class="post-form"> {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save</button>
+            </form>    
+        </main>
+    </body>
+
+
