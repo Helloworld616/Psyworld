@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kor">
+    <head>
+        <meta charset="utf-8">
+        <title>Psyworld</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'app name/css/detail.css' %}" />
+    </head>
+    <body>
+        <header>
+            <section id="title">포스트 내용 자세히 보기</section>
+        </header>
+        <main>
+            <div id="container">
+                <section class=content>
+                    <h1>{{ post.title }}</h1>
+                    {% if post.pub_date %}
+                        <div class="date">
+                            {{ post.pub_date }}
+                        </div>
+                    {% endif %}
+                    <p> {{ post.body|linebreaks }}</p>
+                    <a href="{% url 'edit' index=post.pk %}">수정하기</a><br>
+                    <a href="{% url 'delete' pk=post.pk %}">삭제하기</a>
+                </section>
+            </div>
+        </main>
+    </body>
+
+
+
+
+

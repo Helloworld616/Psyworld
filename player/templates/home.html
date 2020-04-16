@@ -19,9 +19,7 @@
             <div id="container">
                 <section class=content>
                     {% for post in posts_list %}
-                        <h3>{{ post.title }}</h3>
-                        <p3>{{ post.pub_date}}</p3>
-                        <p> {{ post.body|linebreaks }}</p>
+                        <a href="{% url 'detail' index=post.pk %}">{{ post.title }}</a><br>
                         <hr style="color:'#BDBDBD';">
                     {% endfor %}
                 </section>
