@@ -9,9 +9,22 @@
     <body>
         <header>
             <section id="title">Psyworld</section>
+            {% if user.is_authenticated %} 
+            <p>환영합니다, {{ user.username }}님. 행복한 하루 보내세요!</p> 
+            <a href="{% url 'logout' %}">로그아웃</a><br><br>
+            {% else %} 
+            <p>환영합니다. 로그인하신 후에 일기를 작성해주세요!</p> 
+            {% endif %}
+
             <section id="menu">
                 <section id="make">
-                    <a href="{% url 'new' %}">write</a>
+                    <a href="{% url 'new' %}">Write</a>
+                </section>
+                <section id="make">
+                    <a href="{% url 'login' %}">Log In</a>
+                </section>
+                <section id="make">
+                    <a href="{% url 'register' %}">Sign In</a>
                 </section>
             </section>
         </header>
@@ -27,8 +40,9 @@
         </main> 
         <footer>
             <div id="sound">
-                <audio loop autoplay controls>
-                    <source src="{% static 'app name/audio/music.mp3' %}">
+                <iframe src="{% static 'app name/audio/silence.mp3' %}" allow="autoplay" id="audio" style="display:none"></iframe>    
+                <audio id="player" autoplay loop controls>
+                    <source src="{% static 'app name/audio/music.mp3' %}" type="audio/mp3">
                         브라우저가 오디오를 지원하지 않습니다.
                 </audio>
             </div>
