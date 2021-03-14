@@ -11,8 +11,6 @@ header{
     background-color:#BDBDBD;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
 }
 
 main{
@@ -48,7 +46,6 @@ footer{
     color:#FFFFFF;
     font-weight: bold;
     text-align : center;
-    margin-right : 550px;
 }
 
 #menu{
@@ -73,4 +70,10 @@ footer{
     text-align : center;
 }
 
+.unselected{
+    color : white;
+}
 
+.selected{
+    color : red;
+}

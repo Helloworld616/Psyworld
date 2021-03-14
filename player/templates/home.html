@@ -4,29 +4,72 @@
     <head>
         <meta charset="utf-8">
         <title>Psyworld</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'app name/css/style.css' %}" />
+        <style type="text/css">
+            a:visited { color: black; text-decoration: none;}
+            a:hover { color: #1E90FF; text-decoration: underline;}
+        </style> 
     </head>
+    <script>
+        $(function(){
+            $("#write").on('click', ()=>{
+                swal({
+                    title: "로그인이 필요합니다!",
+                    icon: "warning",
+                    buttons: {
+                        cancel : "나가기",
+                        signup : "회원가입",
+                        signin : "로그인",
+                    },
+                }).then((value) => {
+                    switch(value){
+                        case "signup" :
+                            window.location = "{% url 'register' %}";
+                            break;
+
+                        case "signin" :
+                            window.location = "{% url 'login' %}";
+                            break;
+                    }
+                });
+            })
+        });
+    </script>
     <body>
         <header>
-            <section id="title">Psyworld</section>
-            {% if user.is_authenticated %} 
-            <p>환영합니다, {{ user.username }}님. 행복한 하루 보내세요!</p> 
-            <a href="{% url 'logout' %}">로그아웃</a><br><br>
-            {% else %} 
-            <p>환영합니다. 로그인하신 후에 일기를 작성해주세요!</p> 
+            <a id="title"href="{% url 'home' %}">Psyworld</a>
+            {% if user.is_authenticated %}
+                <p style="color : white;line-height : 42px; vertical-align : middle;">환영합니다, {{ user.username }}님. 행복한 하루 보내세요!</p> 
+                <a href="{% url 'logout' %}" style="color: blue; line-height : 42px; vertical-align : middle;">Sign Out</a><br><br>
+            {% else %}
+                <p style="color : white; line-height : 42px; vertical-align : middle;">환영합니다. 로그인하신 후에 일기를 작성해주세요!</p> 
             {% endif %}
-
-            <section id="menu">
-                <section id="make">
-                    <a href="{% url 'new' %}">Write</a>
-                </section>
-                <section id="make">
-                    <a href="{% url 'login' %}">Log In</a>
-                </section>
-                <section id="make">
-                    <a href="{% url 'register' %}">Sign In</a>
-                </section>
-            </section>
+            <ul class="nav justify-content-end">
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a id="write" class="nav-link" href="{% url 'new' %}" tabindex="-1" aria-disabled="true">Write</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Sign In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" tabindex="-1" aria-disabled="true">Sign Up</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a id="write" class="nav-link" href="#" tabindex="-1" aria-disabled="true">Write</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Sign In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}" tabindex="-1" aria-disabled="true">Sign Up</a>
+                  </li>
+                {% endif %}
+            </ul>
         </header>
         <main>
             <div id="container">
